@@ -1206,3 +1206,17 @@ footer .brand-logo-header{width:146px!important}
 .item-cap i:after{content:'';position:absolute;right:0;bottom:1px;width:10px;height:4px;border:2px solid currentColor;border-left:0;border-radius:0 6px 6px 0}
 @keyframes sheet-journey{0%,44%{transform:translate(0,0) rotate(0);opacity:1}54%,62%{transform:translate(124px,29px) rotate(4deg);opacity:1}70%,100%{transform:translate(0,0) rotate(0);opacity:1}}
 @media(max-width:700px){.production-animation{min-height:755px}.printer-machine{top:91px;bottom:auto;left:12%;width:76%;height:214px}.press-machine{top:349px;bottom:auto;right:12%;width:76%;height:244px}.made-products{left:15px;right:15px;bottom:25px;display:grid;grid-template-columns:auto 1fr;gap:9px}.made-products>div{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}.made-products b{min-width:0;font-size:.36rem;padding:6px 3px}.made-products b i{transform:scale(.85)}.printed-sheet{animation-name:sheet-journey-mobile}@keyframes sheet-journey-mobile{0%,44%{transform:translate(0,0) rotate(0);opacity:1}54%,62%{transform:translate(28px,176px) rotate(4deg);opacity:1}70%,100%{transform:translate(0,0) rotate(0);opacity:1}}}
+
+/* Final logo and product-card polish. Footer always uses the white mark. */
+footer .brand-logo .logo-light{visibility:hidden!important}
+footer .brand-logo .logo-dark{visibility:visible!important}
+footer .brand-logo-header{width:190px!important}
+.made-products{left:27px!important;right:auto!important;bottom:22px!important;width:285px;display:grid!important;justify-content:start!important;gap:8px}
+.made-products>div{display:grid!important;grid-template-columns:repeat(4,65px)!important;gap:6px!important}
+.made-products b{min-width:0!important;min-height:59px;padding:6px 4px!important;border-color:rgba(113,228,255,.36)!important;background:linear-gradient(145deg,rgba(16,72,133,.82),rgba(4,26,66,.86))!important;font-size:.39rem!important}
+.made-products b i{width:23px!important;height:21px!important;color:#b9f7ff!important;filter:drop-shadow(0 0 5px rgba(92,236,255,.42))}
+.item-shirt i:before{inset:4px 5px 0!important}.item-shirt i:after{width:21px!important;height:8px!important}
+.item-mug i:before{left:3px!important;top:3px!important;width:14px!important;height:15px!important}.item-mug i:after{top:7px!important;width:8px!important;height:8px!important}
+.item-thermos i:before{left:7px!important;top:2px!important;width:9px!important;height:17px!important}.item-thermos i:after{left:9px!important}
+.item-cap i:before{left:3px!important;top:4px!important;width:15px!important;height:10px!important}.item-cap i:after{width:12px!important;height:5px!important}
+@media(max-width:700px){footer .brand-logo-header{width:142px!important}.made-products{left:17px!important;right:17px!important;bottom:22px!important;width:auto;grid-template-columns:1fr!important;gap:6px}.made-products>div{grid-template-columns:repeat(4,1fr)!important;gap:5px!important}.made-products b{min-height:54px;font-size:.34rem!important}.made-products b i{transform:scale(.88)}}

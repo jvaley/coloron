@@ -1220,3 +1220,8 @@ footer .brand-logo-header{width:190px!important}
 .item-thermos i:before{left:7px!important;top:2px!important;width:9px!important;height:17px!important}.item-thermos i:after{left:9px!important}
 .item-cap i:before{left:3px!important;top:4px!important;width:15px!important;height:10px!important}.item-cap i:after{width:12px!important;height:5px!important}
 @media(max-width:700px){footer .brand-logo-header{width:142px!important}.made-products{left:17px!important;right:17px!important;bottom:22px!important;width:auto;grid-template-columns:1fr!important;gap:6px}.made-products>div{grid-template-columns:repeat(4,1fr)!important;gap:5px!important}.made-products b{min-height:54px;font-size:.34rem!important}.made-products b i{transform:scale(.88)}}
+
+/* Product pictograms are SVGs so every item is instantly recognizable. */
+.made-products b svg{display:block;width:25px;height:25px;fill:none;stroke:#bff8ff;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round;filter:drop-shadow(0 0 5px rgba(92,236,255,.42))}
+.made-products b svg path:first-child{fill:rgba(74,188,255,.12)}
+@media(max-width:700px){.made-products b svg{width:22px;height:22px}}

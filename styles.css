@@ -251,7 +251,7 @@ footer small{margin-left:auto}
 }
 
 
-/* StartColor glass language — no operating-system metaphors */
+/* ColorOn glass language — no operating-system metaphors */
 .titlebar.branded{height:54px;padding:0 22px;background:linear-gradient(90deg,color-mix(in srgb,var(--blue) 8%,transparent),transparent);justify-content:space-between}
 .titlebar.branded>span{margin:0;font-size:.5rem;letter-spacing:.2em;font-weight:800;color:var(--blue)}
 .titlebar.branded>b{font-size:.54rem;color:var(--copy);font-weight:600}
@@ -364,7 +364,7 @@ html[data-theme=dark] .brand img{background:white}
 
 
 /* Kinetic hero, social icons, expressive process + CTA */
-.startcolor-symbol{width:28px;height:28px;border-radius:8px;background:linear-gradient(145deg,var(--navy),var(--blue) 58%,var(--cyan));display:grid;place-items:center;color:white;font-size:.78rem;font-weight:800;font-style:normal;box-shadow:inset 0 1px 1px rgba(255,255,255,.45),0 5px 12px rgba(0,119,255,.18)}
+.coloron-symbol{width:28px;height:28px;border-radius:8px;background:linear-gradient(145deg,var(--navy),var(--blue) 58%,var(--cyan));display:grid;place-items:center;color:white;font-size:.78rem;font-weight:800;font-style:normal;box-shadow:inset 0 1px 1px rgba(255,255,255,.45),0 5px 12px rgba(0,119,255,.18)}
 .kinetic-hero{min-height:940px;padding:115px 0 0;background:var(--bg);position:relative;overflow:hidden}
 .kinetic-lines{position:absolute;inset:0;pointer-events:none}
 .kinetic-lines i{position:absolute;border:1px solid color-mix(in srgb,var(--blue) 18%,transparent);border-radius:50%}
@@ -499,7 +499,7 @@ html[data-theme=dark] .product-disc img{mix-blend-mode:screen;opacity:.9}
 }
 
 
-/* Larger StartColor process */
+/* Larger ColorOn process */
 .process .progress-window{min-height:390px}
 .process .steps{padding:72px 48px 58px;gap:18px}
 .process .step>span{font-size:.68rem;font-weight:800;letter-spacing:.12em;color:var(--blue)}
@@ -523,7 +523,7 @@ html[data-theme=dark] .product-disc img{mix-blend-mode:screen;opacity:.9}
 }
 
 
-/* Official StartColor identity */
+/* Official ColorOn identity */
 .brand-official{gap:9px}
 .brand-official .brand-icon{width:31px;height:31px;border-radius:8px;overflow:hidden;background:#fff;box-shadow:0 4px 12px rgba(13,27,76,.14);flex:0 0 auto}
 .brand-official .brand-icon img{width:100%;height:100%;display:block;object-fit:cover;border-radius:0;box-shadow:none;background:white}
@@ -581,13 +581,13 @@ footer .brand.brand-official img{
 
 .split-wordmark{display:flex;align-items:center;gap:4px;height:22px}
 .brand-official .split-wordmark img{display:block;height:18px;width:auto;object-fit:contain;background:transparent!important;border-radius:0;box-shadow:none}
-.brand-official .split-wordmark .word-startcolor{width:54px}
+.brand-official .split-wordmark .word-coloron{width:54px}
 .brand-official .split-wordmark .word-color{width:56px}
-html[data-theme=dark] header .split-wordmark .word-startcolor{filter:brightness(0) invert(1)}
+html[data-theme=dark] header .split-wordmark .word-coloron{filter:brightness(0) invert(1)}
 html[data-theme=dark] header .split-wordmark .word-color{filter:none}
 
 @media(max-width:700px){.brand-official .split-wordmark img{height:17px}
-.brand-official .split-wordmark .word-startcolor{width:50px}
+.brand-official .split-wordmark .word-coloron{width:50px}
 .brand-official .split-wordmark .word-color{width:52px}
 }
 
@@ -595,36 +595,36 @@ html[data-theme=dark] header .split-wordmark .word-color{filter:none}
 /* Larger split wordmark across header, hero and footer */
 header .split-wordmark{height:27px;gap:5px}
 header .brand-official .split-wordmark img{height:22px}
-header .brand-official .split-wordmark .word-startcolor{width:65px}
+header .brand-official .split-wordmark .word-coloron{width:65px}
 header .brand-official .split-wordmark .word-color{width:68px}
 
 .hero-official-logo{width:345px;min-height:96px;grid-template-columns:78px 1fr;gap:17px}
 .hero-official-logo .hero-symbol{width:78px;height:78px}
 .hero-split-wordmark{height:38px;gap:8px}
 .hero-official-logo .hero-split-wordmark img{height:31px;width:auto;background:transparent!important;box-shadow:none;border-radius:0}
-.hero-official-logo .hero-split-wordmark .word-startcolor{width:92px}
+.hero-official-logo .hero-split-wordmark .word-coloron{width:92px}
 .hero-official-logo .hero-split-wordmark .word-color{width:96px}
 
-html[data-theme=dark] .hero-split-wordmark .word-startcolor{filter:brightness(0) invert(1)}
+html[data-theme=dark] .hero-split-wordmark .word-coloron{filter:brightness(0) invert(1)}
 html[data-theme=dark] .hero-split-wordmark .word-color{filter:none}
 
 footer .brand-official>.official-symbol{width:42px;height:42px}
 footer .footer-split-wordmark{height:32px;gap:6px}
 footer .brand-official .footer-split-wordmark img{height:26px;width:auto;background:transparent!important;box-shadow:none;border-radius:0}
-footer .brand-official .footer-split-wordmark .word-startcolor{width:77px;filter:brightness(0) invert(1)}
+footer .brand-official .footer-split-wordmark .word-coloron{width:77px;filter:brightness(0) invert(1)}
 footer .brand-official .footer-split-wordmark .word-color{width:80px;filter:brightness(1.15)}
 
 @media(max-width:700px){header .brand-official .split-wordmark img{height:19px}
-header .brand-official .split-wordmark .word-startcolor{width:56px}
+header .brand-official .split-wordmark .word-coloron{width:56px}
 header .brand-official .split-wordmark .word-color{width:58px}
 .hero-official-logo{width:280px;min-height:82px;grid-template-columns:65px 1fr;gap:13px}
 .hero-official-logo .hero-symbol{width:65px;height:65px}
 .hero-official-logo .hero-split-wordmark img{height:27px}
-.hero-official-logo .hero-split-wordmark .word-startcolor{width:80px}
+.hero-official-logo .hero-split-wordmark .word-coloron{width:80px}
 .hero-official-logo .hero-split-wordmark .word-color{width:83px}
 footer .brand-official>.official-symbol{width:36px;height:36px}
 footer .brand-official .footer-split-wordmark img{height:22px}
-footer .brand-official .footer-split-wordmark .word-startcolor{width:65px}
+footer .brand-official .footer-split-wordmark .word-coloron{width:65px}
 footer .brand-official .footer-split-wordmark .word-color{width:68px}
 }
 
@@ -764,26 +764,26 @@ html[data-theme=dark] .kinetic-stage .product-disc img{mix-blend-mode:multiply;o
 }
 
 
-/* StartColor text logo: avoids carrying the former brand artwork into the site. */
-.startcolor-mark{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;flex:0 0 auto;background:linear-gradient(145deg,var(--cyan),var(--blue) 62%,var(--navy));box-shadow:inset 0 1px 1px rgba(255,255,255,.55),0 7px 16px rgba(0,119,255,.22);color:#fff;font-size:1.05rem;font-weight:800;letter-spacing:-.08em}
-.startcolor-wordmark{font-size:1.05rem;font-weight:800;letter-spacing:-.075em;color:var(--navy)}
-.startcolor-wordmark span{color:var(--blue)}
-html[data-theme=dark] header .startcolor-wordmark{color:#fff}
+/* ColorOn text logo: avoids carrying the former brand artwork into the site. */
+.coloron-mark{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;flex:0 0 auto;background:linear-gradient(145deg,var(--cyan),var(--blue) 62%,var(--navy));box-shadow:inset 0 1px 1px rgba(255,255,255,.55),0 7px 16px rgba(0,119,255,.22);color:#fff;font-size:1.05rem;font-weight:800;letter-spacing:-.08em}
+.coloron-wordmark{font-size:1.05rem;font-weight:800;letter-spacing:-.075em;color:var(--navy)}
+.coloron-wordmark span{color:var(--blue)}
+html[data-theme=dark] header .coloron-wordmark{color:#fff}
 .hero-official-logo{display:flex;align-items:center;gap:17px;width:auto;min-height:96px}
 .hero-mark{width:78px;height:78px;border-radius:22px;font-size:2.25rem}
 .hero-wordmark{font-size:3rem;letter-spacing:-.09em}
-.brand.light .startcolor-wordmark{color:#fff}
-.brand.light .startcolor-wordmark span{color:var(--cyan)}
-footer .startcolor-mark{width:42px;height:42px;font-size:1.25rem}
-@media(max-width:700px){.startcolor-mark{width:32px;height:32px}
+.brand.light .coloron-wordmark{color:#fff}
+.brand.light .coloron-wordmark span{color:var(--cyan)}
+footer .coloron-mark{width:42px;height:42px;font-size:1.25rem}
+@media(max-width:700px){.coloron-mark{width:32px;height:32px}
 .hero-official-logo{min-height:82px;gap:13px}
 .hero-mark{width:65px;height:65px;font-size:1.85rem}
 .hero-wordmark{font-size:2.35rem}
-footer .startcolor-mark{width:36px;height:36px}
+footer .coloron-mark{width:36px;height:36px}
 }
 
 
-/* Supplied StartColor identity: the source image contains light and dark marks. */
+/* Supplied ColorOn identity: the source image contains light and dark marks. */
 .brand-logo{position:relative;display:block;overflow:hidden;flex:0 0 auto;aspect-ratio:1536 / 539}
 .brand-logo img{display:block;width:100%;height:auto;max-width:none}
 .brand-logo .logo-dark{position:absolute;left:0;top:0;transform:translateY(-52.64%);visibility:hidden}
@@ -805,7 +805,7 @@ footer .brand-logo-header{width:146px}
 .hero-official-logo .brand-logo{height:auto!important}
 
 
-/* StartColor production system — motion inspired by print passes and sublimation heat. */
+/* ColorOn production system — motion inspired by print passes and sublimation heat. */
 .brand-logo{overflow:visible!important;height:auto!important;aspect-ratio:auto!important}
 .brand-logo .logo-light,.brand-logo .logo-dark{width:100%!important;height:auto!important;transform:none!important}
 .brand-logo .logo-dark{position:absolute!important;inset:0!important;visibility:hidden!important}
@@ -825,7 +825,7 @@ footer .brand-logo-header{width:180px!important;height:auto!important}
 .kinetic-stage:before{background-image:linear-gradient(rgba(71,220,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(71,220,255,.08) 1px,transparent 1px);background-size:24px 24px}
 .kinetic-stage:after{height:5px;background:linear-gradient(90deg,transparent,#3effe2 25%,#00d5ff 50%,#3effe2 75%,transparent);box-shadow:0 0 14px #00d5ff,0 0 42px rgba(0,213,255,.8);animation:print-pass 4.8s cubic-bezier(.45,.05,.55,.95) infinite}
 .kinetic-stage .product-disc{transform:rotate(-2deg) perspective(1000px) rotateY(-3deg);border:1px solid rgba(124,233,255,.45)}
-.kinetic-stage .product-disc:before{content:'PRENSA ACTIVA  ·  COLOR PROFILE: STARTCOLOR';color:#062b62;background:rgba(255,255,255,.72);padding:6px 8px;border-radius:5px}
+.kinetic-stage .product-disc:before{content:'PRENSA ACTIVA  ·  COLOR PROFILE: COLORON';color:#062b62;background:rgba(255,255,255,.72);padding:6px 8px;border-radius:5px}
 .kinetic-stage .product-disc img{animation:substrate-float 6s ease-in-out infinite}
 .kinetic-stage .orbit-one{border-color:#36f4d2;box-shadow:0 0 35px rgba(54,244,210,.15)}
 .kinetic-stage .orbit-two{border-color:rgba(92,166,255,.7)}

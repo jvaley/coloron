@@ -30,10 +30,12 @@ if(productionStory){
   const guide=document.createElement('div');
   guide.className='production-story-ui';
   guide.setAttribute('aria-hidden','true');
-  guide.innerHTML='<div class="production-story-readout"><span></span><b></b></div><div class="production-story-steps"><i></i><i></i><i></i><i></i></div>';
+  guide.innerHTML='<div class="production-story-readout"><span></span><b></b></div><div class="production-story-steps"><i></i><i></i><i></i><i></i></div><div class="production-story-timer"><em></em><span>Auto · <b>04.0</b>s</span></div>';
   productionStory.append(guide);
   const readout=guide.querySelector('span'),detail=guide.querySelector('b'),marks=[...guide.querySelectorAll('i')];
-  let activeProductionStep=0,productionQueued=false;
+  const timer=guide.querySelector('.production-story-timer'),timerValue=timer.querySelector('b');
+  const totalSteps=productionSteps.length,cycleDuration=4200;
+  let activeProductionStep=0,cycleStart=performance.now(),paused=false,lastWheel=0,touchY=null;
   const setProductionStep=step=>{
     if(step===activeProductionStep)return;
     activeProductionStep=step;
@@ -45,18 +47,46 @@ if(productionStory){
     caption.textContent=copy;
     marks.forEach((mark,index)=>mark.classList.toggle('active',index<step));
   };
-  const updateProductionStory=()=>{
-    productionQueued=false;
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){setProductionStep(4);return;}
-    const rect=productionStory.getBoundingClientRect();
-    const travel=Math.max(1,Math.min(rect.height*.78,window.innerHeight*.68));
-    const progress=Math.max(0,Math.min(1,-rect.top/travel));
-    setProductionStep(Math.min(4,Math.floor(progress*4)+1));
+  const showTimer=now=>{
+    const elapsed=Math.max(0,now-cycleStart),left=Math.max(0,cycleDuration-elapsed);
+    timerValue.textContent=(left/1000).toFixed(1);
+    timer.style.setProperty('--timer-progress',`${Math.min(1,elapsed/cycleDuration)*100}%`);
   };
-  const requestProductionUpdate=()=>{if(!productionQueued){productionQueued=true;requestAnimationFrame(updateProductionStory)}};
+  const restartTimer=()=>{cycleStart=performance.now();showTimer(cycleStart)};
+  const advance=direction=>{setProductionStep(((activeProductionStep-1+direction+totalSteps)%totalSteps)+1);restartTimer()};
+  const runTimer=now=>{
+    if(!paused&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      const elapsed=now-cycleStart;
+      if(elapsed>=cycleDuration)advance(1);else showTimer(now);
+    }
+    requestAnimationFrame(runTimer);
+  };
+  const useWheel=event=>{
+    event.preventDefault();
+    const now=performance.now();
+    if(Math.abs(event.deltaY)<8||now-lastWheel<430)return;
+    lastWheel=now;
+    advance(event.deltaY>0?1:-1);
+  };
+  const startTouch=event=>{touchY=event.touches[0]?.clientY??null};
+  const useTouch=event=>{
+    if(touchY===null)return;
+    const currentY=event.touches[0]?.clientY??touchY;
+    const delta=touchY-currentY;
+    if(Math.abs(delta)>36){event.preventDefault();advance(delta>0?1:-1);touchY=currentY;}
+  };
   productionStory.classList.add('production-story');
+  productionStory.setAttribute('tabindex','0');
+  productionStory.setAttribute('aria-roledescription','Animación interactiva de sublimación');
+  productionStory.setAttribute('aria-label','Usa la rueda o desliza dentro de esta animación para recorrer el proceso de sublimación.');
   setProductionStep(1);
-  window.addEventListener('scroll',requestProductionUpdate,{passive:true});
-  window.addEventListener('resize',requestProductionUpdate,{passive:true});
-  requestProductionUpdate();
+  productionStory.addEventListener('wheel',useWheel,{passive:false});
+  productionStory.addEventListener('touchstart',startTouch,{passive:true});
+  productionStory.addEventListener('touchmove',useTouch,{passive:false});
+  productionStory.addEventListener('touchend',()=>{touchY=null},{passive:true});
+  productionStory.addEventListener('focusin',()=>{paused=true});
+  productionStory.addEventListener('focusout',()=>{paused=false;restartTimer()});
+  productionStory.addEventListener('keydown',event=>{if(event.key==='ArrowDown'||event.key==='ArrowRight'){event.preventDefault();advance(1)}if(event.key==='ArrowUp'||event.key==='ArrowLeft'){event.preventDefault();advance(-1)}});
+  document.addEventListener('visibilitychange',()=>{paused=document.hidden;if(!paused)restartTimer()});
+  requestAnimationFrame(runTimer);
 }

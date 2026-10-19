@@ -16,41 +16,47 @@ const menu=document.querySelector('#menu'),nav=document.querySelector('#nav');me
 const root=document.documentElement,toggle=document.querySelector('#theme');function setTheme(t){root.dataset.theme=t;const d=t==='dark';toggle.querySelector('span').textContent=d?'☀':'☾';toggle.setAttribute('aria-label',d?'Activar modo claro':'Activar modo oscuro')}setTheme(localStorage.getItem('coloron-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));toggle.addEventListener('click',()=>{const n=root.dataset.theme==='dark'?'light':'dark';setTheme(n);localStorage.setItem('coloron-theme',n)});
 const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.appear').forEach(e=>observer.observe(e));
 
-/* The ten storyboards are intentionally data-driven: replace assets/scroll/coloron_scroll_XX.png without changing this controller. */
-const cinema=document.querySelector('.cinema-story');
-const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
-if(cinema&&!reducedMotion.matches){
-  const frames=[...cinema.querySelectorAll('.cinema-frame-stack img')];
-  const captions=[...cinema.querySelectorAll('.cinema-text')];
-  const counter=cinema.querySelector('.cinema-current');
-  let activeFrame=1,queued=false,isNear=false;
-  const pad=n=>String(n).padStart(2,'0');
-  const preloadNearby=frame=>[frame-1,frame,frame+1].forEach(number=>{
-    const image=frames[number-1];
-    if(image&&image.dataset.ready!=='true'){image.dataset.ready='true';const preload=new Image();preload.src=image.currentSrc||image.src;}
-  });
-  const setFrame=frame=>{
-    if(frame===activeFrame)return;
-    activeFrame=frame;
-    frames.forEach(image=>image.classList.toggle('active',Number(image.dataset.frame)===frame));
-    captions.forEach(caption=>caption.classList.toggle('active',Number(caption.dataset.frame)===frame));
-    cinema.dataset.frame=frame;
-    counter.textContent=pad(frame);
-    preloadNearby(frame);
+/* A compact four-act scroll story for the printer and heat-press in the hero. */
+const productionStory=document.querySelector('.production-animation');
+if(productionStory){
+  const productionSteps=[
+    ['01 · ARTE LISTO','Tu diseño se prepara'],
+    ['02 · IMPRESIÓN SUBLIMACIÓN','El color toma forma'],
+    ['03 · TRANSFERENCIA','El calor fija el arte'],
+    ['04 · PRODUCTO FINAL','Listo para sorprender']
+  ];
+  const status=productionStory.querySelector('.production-status b');
+  const caption=productionStory.querySelector('.production-caption b');
+  const guide=document.createElement('div');
+  guide.className='production-story-ui';
+  guide.setAttribute('aria-hidden','true');
+  guide.innerHTML='<div class="production-story-readout"><span></span><b></b></div><div class="production-story-steps"><i></i><i></i><i></i><i></i></div>';
+  productionStory.append(guide);
+  const readout=guide.querySelector('span'),detail=guide.querySelector('b'),marks=[...guide.querySelectorAll('i')];
+  let activeProductionStep=0,productionQueued=false;
+  const setProductionStep=step=>{
+    if(step===activeProductionStep)return;
+    activeProductionStep=step;
+    const [label,copy]=productionSteps[step-1];
+    productionStory.dataset.productionStep=step;
+    readout.textContent=label;
+    detail.textContent=copy;
+    status.textContent=step===4?'PRODUCTO LISTO':'PRODUCCIÓN ACTIVA';
+    caption.textContent=copy;
+    marks.forEach((mark,index)=>mark.classList.toggle('active',index<step));
   };
-  const updateCinema=()=>{
-    queued=false;
-    if(!isNear)return;
-    const rect=cinema.getBoundingClientRect();
-    const distance=Math.max(1,cinema.offsetHeight-window.innerHeight);
-    const progress=Math.min(1,Math.max(0,-rect.top/distance));
-    const frame=Math.min(frames.length,Math.floor(progress*frames.length)+1);
-    cinema.style.setProperty('--story-progress',progress.toFixed(4));
-    setFrame(frame);
+  const updateProductionStory=()=>{
+    productionQueued=false;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){setProductionStep(4);return;}
+    const rect=productionStory.getBoundingClientRect();
+    const travel=Math.max(1,Math.min(rect.height*.78,window.innerHeight*.68));
+    const progress=Math.max(0,Math.min(1,-rect.top/travel));
+    setProductionStep(Math.min(4,Math.floor(progress*4)+1));
   };
-  const requestUpdate=()=>{if(!queued){queued=true;requestAnimationFrame(updateCinema)}};
-  new IntersectionObserver(entries=>{isNear=entries[0].isIntersecting;if(isNear){preloadNearby(activeFrame);requestUpdate();}},{rootMargin:'120% 0px'}).observe(cinema);
-  window.addEventListener('scroll',requestUpdate,{passive:true});
-  window.addEventListener('resize',requestUpdate,{passive:true});
-  preloadNearby(activeFrame);
+  const requestProductionUpdate=()=>{if(!productionQueued){productionQueued=true;requestAnimationFrame(updateProductionStory)}};
+  productionStory.classList.add('production-story');
+  setProductionStep(1);
+  window.addEventListener('scroll',requestProductionUpdate,{passive:true});
+  window.addEventListener('resize',requestProductionUpdate,{passive:true});
+  requestProductionUpdate();
 }
